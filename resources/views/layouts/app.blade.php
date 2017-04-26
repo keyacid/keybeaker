@@ -60,6 +60,31 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{ url('/message/create') }}">
+                                            New message
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/inbox') }}">
+                                            Inbox
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/sent') }}">
+                                            Sent
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/publickey') }}">
+                                            Manage public keys
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/password') }}">
+                                            Change password
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

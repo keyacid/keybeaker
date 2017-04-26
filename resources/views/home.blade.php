@@ -8,7 +8,15 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    Welcome to keybeaker!<br>
+                    Select an item in the dropdown menu to proceed.
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Unread messages</div>
+
+                <div class="panel-body">
+                    You don't have any unread messages!
                 </div>
             </div>
         </div>

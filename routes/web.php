@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('/publickey','PublicKeyController');
+
+Route::get('/inbox','MessageController@inbox');
+
+Route::get('/sent','MessageController@sent');
+
+Route::resource('/message','MessageController');
+
+Route::get('/password','ChangePasswordController@index');
