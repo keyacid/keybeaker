@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration
             $table->longText('content');
             $table->string('signature');
             $table->timestamp('created_at');
+            $table->boolean('opened');
         });
     }
 

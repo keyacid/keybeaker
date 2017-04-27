@@ -27,9 +27,11 @@ class PublicKeyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('public_key_create');
+        $nonce=base64_encode(\Sodium\randombytes_buf(24));
+        $request->session()->put('nonce',$nonce);
+        return view('public_key_create',['nonce' => $nonce]);
     }
 
     /**
@@ -40,7 +42,14 @@ class PublicKeyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $publickey=base64_decode($request->input('publickey'));
+        $nonce=$request->session()->get('nonce');
+        $request->session()->forget('nonce');
+        $signature=base64_decode($request->input('signature'));
+        if (strlen($publickey)!=\Sodium\CRYPTO_SIGN_PUBLICKEYBYTES) {
+            return $this->create($request);
+        }
+        return \Sodium\crypto_sign_verify_detached($signature,$nonce,$publickey)?$this->index():$this->create($request);
     }
 
     /**
