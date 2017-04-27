@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\PublicKey;
 use Illuminate\Http\Request;
 
 class PublicKeyController extends Controller
@@ -18,7 +19,7 @@ class PublicKeyController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('public_key_index');
     }
 
     /**
@@ -28,7 +29,7 @@ class PublicKeyController extends Controller
      */
     public function create()
     {
-        //
+        return view('public_key_create');
     }
 
     /**
@@ -38,40 +39,6 @@ class PublicKeyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
     {
         //
     }

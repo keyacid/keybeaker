@@ -65,12 +65,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/inbox') }}">
+                                        <a href="{{ url('/message/inbox') }}">
                                             Inbox
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/sent') }}">
+                                        <a href="{{ url('/message/sent') }}">
                                             Sent
                                         </a>
                                     </li>
@@ -80,8 +80,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/password') }}">
-                                            Change password
+                                        <a href="{{ url('/password/reset') }}">
+                                            Reset password
                                         </a>
                                     </li>
                                     <li>

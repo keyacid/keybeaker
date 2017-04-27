@@ -21,10 +21,8 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('/publickey','PublicKeyController');
 
-Route::get('/inbox','MessageController@inbox');
+Route::get('/message/inbox','MessageController@inbox');
 
-Route::get('/sent','MessageController@sent');
+Route::get('/message/sent','MessageController@sent');
 
 Route::resource('/message','MessageController');
-
-Route::get('/password','ChangePasswordController@index');
