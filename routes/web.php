@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('/inbox','InboxController',['only'=>['index','show','destroy']]);
+
+Route::resource('/sent','SentController',['only'=>['index','create','store','show','destroy']]);
+
+Route::get('/login',"LoginController@loginPage");
+
+Route::post('/login',"LoginController@login");
+
+Route::get('/logout',"LoginController@logout");
