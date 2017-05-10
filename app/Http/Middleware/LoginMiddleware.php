@@ -15,7 +15,10 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        //return redirect('/login');
-        return $next($request);
+        if ($request->session()->has('key')) {
+            return $next($request);
+        } else {
+            return redirect('/login');
+        }
     }
 }

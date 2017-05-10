@@ -68,7 +68,6 @@
         <div class="flex-center position-ref full-height">
             <div class="top-right links">
                 <a href="{{ url('/inbox') }}">Inbox</a>
-                <a href="{{ url('/sent') }}">Sent</a>
             </div>
 
             <div class="content">
