@@ -21,7 +21,7 @@ class CreateMessagesTable extends Migration
             $table->char('signature',88);
             $table->enum('sender_status',['sent','deleted'])->default('sent');
             $table->enum('receiver_status',['received','read','deleted'])->default('received');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 

@@ -18,13 +18,11 @@ class InboxController extends Controller
      */
     public function index(Request $request)
     {
-        dump(
-            \App\Message::where('receiver_key',$request->session()->get('key'))
-                        ->where('receiver_status','!=','deleted')
-                        ->orderBy('id','desc')
-                        ->get(['id','sender_key','receiver_status','created_at'])
-        );
-        return view('inbox.index');
+            $items=\App\Message::where('receiver_key',$request->session()->get('key'))
+                               ->where('receiver_status','!=','deleted')
+                               ->orderBy('id','desc')
+                               ->get(['id','sender_key','receiver_status','created_at']);
+        return view('inbox.index',['items'=>$items]);
     }
 
     /**
@@ -40,10 +38,8 @@ class InboxController extends Controller
             return response(view('errors.404'),404);
         } else {
             $item->receiver_status='read';
-            $item->timestamps=false;
             $item->save();
-            dump($item);
-            return view('inbox.show');
+            return view('inbox.show',['item'=>$item]);
         }
     }
 
@@ -53,7 +49,7 @@ class InboxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,Request $request)
     {
         $item=\App\Message::find($id);
         if ($item==null||$item->receiver_key!=$request->session()->get('key')||$item->receiver_status=='deleted') {
@@ -63,7 +59,6 @@ class InboxController extends Controller
                 $item->delete();
             } else {
                 $item->receiver_status='deleted';
-                $item->timestamps=false;
                 $item->save();
             }
             return redirect('/inbox');
