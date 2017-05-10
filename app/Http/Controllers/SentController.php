@@ -45,7 +45,8 @@ class SentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return "test";
+        //return redirect('/sent/');
     }
 
     /**

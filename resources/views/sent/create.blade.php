@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Send a new message</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/sent') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/sent/create') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">

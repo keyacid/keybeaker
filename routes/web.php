@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::resource('/inbox','InboxController',['only'=>['index','show','destroy']]);
 
-Route::resource('/sent','SentController',['only'=>['index','create','store','show','destroy']]);
+Route::resource('/sent','SentController',['only'=>['index','create','show','destroy']]);
+
+Route::post('/sent/create','SentController@store');
 
 Route::get('/login',"LoginController@loginPage");
 
