@@ -18,11 +18,11 @@ class InboxController extends Controller
      */
     public function index(Request $request)
     {
-            $items=\App\Message::where('receiver_key',$request->session()->get('key'))
-                               ->where('receiver_status','!=','deleted')
-                               ->orderBy('id','desc')
-                               ->get(['id','sender_key','receiver_status','created_at']);
-        return view('inbox.index',['items'=>$items]);
+        $items=\App\Message::where('receiver_key',$request->session()->get('key'))
+                           ->where('receiver_status','!=','deleted')
+                           ->orderBy('id','desc')
+                           ->paginate(20,['id','sender_key','receiver_status','created_at']);
+        return view('inbox.index',['items'=>$items->toJson()]);
     }
 
     /**

@@ -21,8 +21,8 @@ class SentController extends Controller
         $items=\App\Message::where('sender_key',$request->session()->get('key'))
                            ->where('sender_status','!=','deleted')
                            ->orderBy('id','desc')
-                           ->get(['id','receiver_key','receiver_status','created_at']);
-        return view('sent.index',['items'=>$items]);
+                           ->paginate(20,['id','receiver_key','receiver_status','created_at']);
+        return view('sent.index',['items'=>$items->toJson()]);
     }
 
     /**

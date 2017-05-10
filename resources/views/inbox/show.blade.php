@@ -9,7 +9,11 @@
                     <table style="width: 100%;">
                         <tbody>
                             <tr>
-                                <td style="text-align: left;">Message</td>
+                                <td style="text-align: left;">
+                                    <button type="button" class="btn btn-default" onclick="javascript: location.href='{{ url('/inbox') }}'">
+                                        &lt; Inbox
+                                    </button>
+                                </td>
                                 <td style="text-align: right;">
                                     <form method="POST" style="margin: 0px;">
                                         {{ csrf_field() }}
