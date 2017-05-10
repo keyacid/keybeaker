@@ -16,8 +16,9 @@ class InboxController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        dump(\App\Message::where('receiver_key',$request->session()->get('key'))->orderBy('id','desc')->get());
         return view('inbox.index');
     }
 
