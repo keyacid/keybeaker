@@ -16,8 +16,14 @@ class SentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        dump(
+            \App\Message::where('sender_key',$request->session()->get('key'))
+                        ->where('sender_status','!=','deleted')
+                        ->orderBy('id','desc')
+                        ->get(['id','receiver_key','receiver_status','created_at'])
+        );
         return view('sent.index');
     }
 
@@ -48,9 +54,15 @@ class SentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
-        return view('sent.show');
+        $item=\App\Message::find($id);
+        if ($item==null||$item->sender_key!=$request->session()->get('key')||$item->sender_status=='deleted') {
+            return response(view('404'),404);
+        } else {
+            dump($item);
+            return view('sent.show');
+        }
     }
 
     /**

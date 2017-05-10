@@ -18,7 +18,12 @@ class InboxController extends Controller
      */
     public function index(Request $request)
     {
-        dump(\App\Message::where('receiver_key',$request->session()->get('key'))->orderBy('id','desc')->get());
+        dump(
+            \App\Message::where('receiver_key',$request->session()->get('key'))
+                        ->where('receiver_status','!=','deleted')
+                        ->orderBy('id','desc')
+                        ->get(['id','sender_key','receiver_status','created_at'])
+        );
         return view('inbox.index');
     }
 
@@ -28,9 +33,15 @@ class InboxController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,Request $request)
     {
-        return view('inbox.show');
+        $item=\App\Message::find($id);
+        if ($item==null||$item->receiver_key!=$request->session()->get('key')||$item->receiver_status=='deleted') {
+            return response(view('404'),404);
+        } else {
+            dump($item);
+            return view('inbox.show');
+        }
     }
 
     /**
