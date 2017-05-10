@@ -39,6 +39,9 @@ class InboxController extends Controller
         if ($item==null||$item->receiver_key!=$request->session()->get('key')||$item->receiver_status=='deleted') {
             return response(view('errors.404'),404);
         } else {
+            $item->receiver_status='read';
+            $item->timestamps=false;
+            $item->save();
             dump($item);
             return view('inbox.show');
         }
@@ -52,6 +55,18 @@ class InboxController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item=\App\Message::find($id);
+        if ($item==null||$item->receiver_key!=$request->session()->get('key')||$item->receiver_status=='deleted') {
+            return response(view('errors.404'),404);
+        } else {
+            if ($item->sender_status=='deleted') {
+                $item->delete();
+            } else {
+                $item->receiver_status='deleted';
+                $item->timestamps=false;
+                $item->save();
+            }
+            return redirect('/inbox');
+        }
     }
 }

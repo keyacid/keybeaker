@@ -73,6 +73,18 @@ class SentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item=\App\Message::find($id);
+        if ($item==null||$item->sender_key!=$request->session()->get('key')||$item->sender_status=='deleted') {
+            return response(view('errors.404'),404);
+        } else {
+            if ($item->receiver_status=='deleted') {
+                $item->delete();
+            } else {
+                $item->sender_status='deleted';
+                $item->timestamps=false;
+                $item->save();
+            }
+            return redirect('/sent');
+        }
     }
 }
