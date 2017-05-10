@@ -14,7 +14,7 @@
                                     <form method="POST" style="margin: 0px;">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="button" class="btn btn-primary" onclick="javascript: location.href='{{ url('/sent/create?receiver='.urlencode('g+aRVDSLAiiqQGRGJXwsWaR3o70PCH+g0wTYtdhGB8Y=')) }}'">
+                                        <button type="button" class="btn btn-primary" onclick="javascript: location.href='{{ url('/sent/create?receiver='.urlencode($item->sender_key)) }}'">
                                             Reply
                                         </button>
                                         <button type="submit" class="btn btn-danger">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="panel-body">
-                    Placeholder
+                    {{ $item }}
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="panel-body">
-                    Placeholder
+                    {{ $item }}
                 </div>
             </div>
         </div>

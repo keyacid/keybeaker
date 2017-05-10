@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="panel-body">
-                    You don't have any messasges in your inbox!
+                    {{ $items }}
                 </div>
             </div>
         </div>

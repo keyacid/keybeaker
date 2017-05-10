@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="panel-body">
-                    You don't have any messasges in your sent box!
+                    {{ $items }}
                 </div>
             </div>
         </div>
