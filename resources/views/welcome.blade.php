@@ -77,6 +77,7 @@
 
                 <div class="links">
                     <a href="https://github.com/keyacid/">GitHub</a>
+                    <a href="https://github.com/keyacid/keybeaker/blob/master/LICENSE">License</a>
                 </div>
             </div>
         </div>
