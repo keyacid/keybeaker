@@ -19,18 +19,32 @@
                         </tbody>
                     </table>
                 </div>
-                @forelse ($items as $item)
-                    <div class="panel-body">
-                        <a href="{{ url('/inbox/'.$item->id) }}">{{ $item }}</a>
-                    </div>
-                @empty
+                @if (count($items)==0)
                     <div class="panel-body">
                         You don't have any messages in your inbox!
                     </div>
-                @endforelse
-                <div class="panel-body">
-                    {{ $items->links() }}
-                </div>
+                @else
+                    <div class="panel-body">
+                        <div class="list-group">
+                            @foreach ($items as $item)
+                                <a href="{{ url('/inbox/'.$item->id) }}" class="list-group-item{{ $item->receiver_status=='received' ? ' list-group-item-warning' : '' }}">
+                                    <h4 class="list-group-item-heading">From {{ $item->sender_key }}</h4>
+                                    <p class="list-group-item-text">Received at {{ $item->created_at }}</p>
+                                    <p class="list-group-item-text">
+                                        @if ($item->receiver_status=='received')
+                                            New
+                                        @elseif ($item->receiver_status=='read')
+                                            Opened
+                                        @endif
+                                    </p>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{ $items->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

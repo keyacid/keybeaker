@@ -19,18 +19,34 @@
                         </tbody>
                     </table>
                 </div>
-                @forelse ($items as $item)
-                    <div class="panel-body">
-                        <a href="{{ url('/sent/'.$item->id) }}">{{ $item }}</a>
-                    </div>
-                @empty
+                @if (count($items)==0)
                     <div class="panel-body">
                         You don't have any messages in your sent box!
                     </div>
-                @endforelse
-                <div class="panel-body">
-                    {{ $items->links() }}
-                </div>
+                @else
+                    <div class="panel-body">
+                        <div class="list-group">
+                            @foreach ($items as $item)
+                                <a href="{{ url('/sent/'.$item->id) }}" class="list-group-item">
+                                    <h4 class="list-group-item-heading">To {{ $item->receiver_key }}</h4>
+                                    <p class="list-group-item-text">Sent at {{ $item->created_at }}</p>
+                                    <p class="list-group-item-text">
+                                        @if ($item->receiver_status=='received')
+                                            Unopened
+                                        @elseif ($item->receiver_status=='read')
+                                            Opened
+                                        @elseif ($item->receiver_status=='deleted')
+                                            Opened and Deleted
+                                        @endif
+                                    </p>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        {{ $items->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
