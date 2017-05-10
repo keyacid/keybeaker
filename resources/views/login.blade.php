@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label">Sign this message</label>
+                            <label class="col-md-4 control-label">Sign this message </label>
 
                             <div class="col-md-6">
                                 <label class="control-label">{{ $nonce }}</label>
