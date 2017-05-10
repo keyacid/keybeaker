@@ -58,7 +58,7 @@ class SentController extends Controller
     {
         $item=\App\Message::find($id);
         if ($item==null||$item->sender_key!=$request->session()->get('key')||$item->sender_status=='deleted') {
-            return response(view('404'),404);
+            return response(view('errors.404'),404);
         } else {
             dump($item);
             return view('sent.show');
