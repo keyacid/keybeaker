@@ -19,9 +19,17 @@
                         </tbody>
                     </table>
                 </div>
-
+                @forelse ($items as $item)
+                    <div class="panel-body">
+                        <a href="{{ url('/sent/'.$item->id) }}">{{ $item }}</a>
+                    </div>
+                @empty
+                    <div class="panel-body">
+                        You don't have any messages in your sent box!
+                    </div>
+                @endforelse
                 <div class="panel-body">
-                    {{ $items }}
+                    {{ $items->links() }}
                 </div>
             </div>
         </div>

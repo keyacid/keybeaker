@@ -22,7 +22,7 @@ class InboxController extends Controller
                            ->where('receiver_status','!=','deleted')
                            ->orderBy('id','desc')
                            ->paginate(20,['id','sender_key','receiver_status','created_at']);
-        return view('inbox.index',['items'=>$items->toJson()]);
+        return view('inbox.index',['items'=>$items]);
     }
 
     /**

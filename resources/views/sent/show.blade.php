@@ -10,7 +10,7 @@
                         <tbody>
                             <tr>
                                 <td style="text-align: left;">
-                                    <button type="button" class="btn btn-default" onclick="javascript: location.href='{{ url('/inbox') }}'">
+                                    <button type="button" class="btn btn-default" onclick="javascript: location.href='{{ url('/sent') }}'">
                                         &lt; Sent
                                     </button>
                                 </td>

@@ -22,7 +22,7 @@ class SentController extends Controller
                            ->where('sender_status','!=','deleted')
                            ->orderBy('id','desc')
                            ->paginate(20,['id','receiver_key','receiver_status','created_at']);
-        return view('sent.index',['items'=>$items->toJson()]);
+        return view('sent.index',['items'=>$items]);
     }
 
     /**
