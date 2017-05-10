@@ -13,15 +13,15 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Sender Public Key</label>
 
-                            <div class="col-md-6">
-                                <label class="control-label">{{ $key }}</label>
+                            <div class="col-md-7">
+                                <label class="control-label" style="word-break:break-all">{{ $key }}</label>
                             </div>
                         </div>
 
                         <div class="form-group{{ isset($keyerror) ? ' has-error' : '' }}">
                             <label for="key" class="col-md-4 control-label">Receiver Public Key</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="key" type="text" class="form-control" name="key" maxlength="44" value="{{ isset($oldkey) ? $oldkey : '' }}" required{{ (!isset($sigerror)) ? ' autofocus' : '' }}>
 
                                 @if (isset($keyerror))
@@ -35,7 +35,7 @@
                         <div class="form-group">
                             <label for="content" class="col-md-4 control-label">Content</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <textarea id="content" class="form-control" name="content" rows="5" style="resize: vertical;" autocomplete="off" required>{{ isset($oldcontent) ? $oldcontent : '' }}</textarea>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                         <div class="form-group{{ isset($sigerror) ? ' has-error' : '' }}">
                             <label for="signature" class="col-md-4 control-label">Signature</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="signature" type="text" class="form-control" name="signature" maxlength="88" value="{{ isset($oldsig) ? $oldsig : '' }}" autocomplete="off" required {{ (isset($sigerror)) ? ' autofocus' : '' }}>
 
                                 @if (isset($sigerror))

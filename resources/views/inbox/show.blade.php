@@ -32,7 +32,30 @@
                 </div>
 
                 <div class="panel-body">
-                    {{ $item }}
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row" style="text-align: right;">From</th>
+                                <td style="word-break:break-all">{{ $item->sender_key }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align: right;">To</th>
+                                <td style="word-break:break-all">{{ $item->receiver_key }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align: right;" nowrap>Received at</th>
+                                <td>{{ $item->created_at }} UTC</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align: right;">Content</th>
+                                <td style="word-break:break-all">{{ $item->content }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" style="text-align: right;">Signature</th>
+                                <td style="word-break:break-all">{{ $item->signature }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

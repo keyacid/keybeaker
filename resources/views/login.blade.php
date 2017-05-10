@@ -28,7 +28,7 @@
                             <label class="col-md-4 control-label">Sign this message </label>
 
                             <div class="col-md-6">
-                                <label class="control-label">{{ $nonce }}</label>
+                                <label class="control-label" style="word-break:break-all">{{ $nonce }}</label>
                             </div>
                         </div>
 

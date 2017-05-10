@@ -28,8 +28,8 @@
                         <div class="list-group">
                             @foreach ($items as $item)
                                 <a href="{{ url('/inbox/'.$item->id) }}" class="list-group-item{{ $item->receiver_status=='received' ? ' list-group-item-warning' : '' }}">
-                                    <h4 class="list-group-item-heading">From {{ $item->sender_key }}</h4>
-                                    <p class="list-group-item-text">Received at {{ $item->created_at }}</p>
+                                    <h4 class="list-group-item-heading" style="word-break:break-all">From {{ $item->sender_key }}</h4>
+                                    <p class="list-group-item-text">Received at {{ $item->created_at }} UTC</p>
                                     <p class="list-group-item-text">
                                         @if ($item->receiver_status=='received')
                                             New

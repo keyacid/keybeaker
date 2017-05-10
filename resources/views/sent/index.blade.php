@@ -28,8 +28,8 @@
                         <div class="list-group">
                             @foreach ($items as $item)
                                 <a href="{{ url('/sent/'.$item->id) }}" class="list-group-item">
-                                    <h4 class="list-group-item-heading">To {{ $item->receiver_key }}</h4>
-                                    <p class="list-group-item-text">Sent at {{ $item->created_at }}</p>
+                                    <h4 class="list-group-item-heading" style="word-break:break-all">To {{ $item->receiver_key }}</h4>
+                                    <p class="list-group-item-text">Sent at {{ $item->created_at }} UTC</p>
                                     <p class="list-group-item-text">
                                         @if ($item->receiver_status=='received')
                                             Unopened
