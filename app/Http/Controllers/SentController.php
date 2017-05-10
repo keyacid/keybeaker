@@ -26,9 +26,9 @@ class SentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('sent.create');
+        return view('sent.create',['key'=>$request->session()->get('key')]);
     }
 
     /**

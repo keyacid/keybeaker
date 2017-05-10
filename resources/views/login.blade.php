@@ -36,7 +36,7 @@
                             <label for="signature" class="col-md-4 control-label">Signature</label>
 
                             <div class="col-md-6">
-                                <input id="signature" type="text" class="form-control" name="signature" maxlength="88" required {{ (isset($sigerror)) ? ' autofocus' : '' }}>
+                                <input id="signature" type="text" class="form-control" name="signature" maxlength="88" autocomplete="off" required {{ (isset($sigerror)) ? ' autofocus' : '' }}>
 
                                 @if (isset($sigerror))
                                     <span class="help-block">
