@@ -36,7 +36,7 @@
                             <label for="content" class="col-md-4 control-label">Content</label>
 
                             <div class="col-md-7">
-                                <textarea id="content" class="form-control" name="content" rows="5" style="resize: vertical;" autocomplete="off" required>{{ isset($oldcontent) ? $oldcontent : '' }}</textarea>
+                                <input id="content" type="text" class="form-control" name="content" autocomplete="off" value="{{ isset($oldcontent) ? $oldcontent : '' }}" required>
                             </div>
                         </div>
 
