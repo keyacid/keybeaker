@@ -1,5 +1,20 @@
 @extends('layouts.app')
 
+@section('title')
+@php
+$count=0;
+foreach ($items as $item) {
+    if ($item->receiver_status=='received') {
+        ++$count;
+    }
+}
+if ($count>0) {
+    echo '('.$count.') ';
+}
+@endphp
+Inbox - keybeaker
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

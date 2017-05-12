@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Send a new message - keybeaker
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
