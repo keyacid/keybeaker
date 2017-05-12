@@ -15,6 +15,28 @@ if ($count>0) {
 Inbox - keybeaker
 @endsection
 
+@section('head')
+<meta http-equiv="refresh" content="60">
+<script>
+    Notification.requestPermission(function(status) {
+        if (status=='granted') {
+            var count={{ $count }};
+            if (count>0) {
+                var n=new Notification('keybeaker',{'body':'You have '+count+' new message(s) in keybeaker!'});
+                n.onshow=function() {
+                    setTimeout(function() {
+                        n.close();
+                    }, 5000);
+                };
+                n.onclick=function() {
+                    n.close();
+                };
+            }
+        }
+    });
+</script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
