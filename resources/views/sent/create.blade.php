@@ -40,7 +40,7 @@ Send a new message - keybeaker
                             <label for="content" class="col-md-4 control-label">Content</label>
 
                             <div class="col-md-7">
-                                <input id="content" type="text" class="form-control" name="content" autocomplete="off" value="{{ isset($oldcontent) ? $oldcontent : '' }}" required>
+                                <textarea id="content" class="form-control" name="content" rows="5" style="resize: vertical;" required>{{ isset($oldcontent) ? $oldcontent : '' }}</textarea>
                             </div>
                         </div>
 

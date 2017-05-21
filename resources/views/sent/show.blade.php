@@ -61,7 +61,7 @@ Sent - keybeaker
                             </tr>
                             <tr>
                                 <th scope="row" style="text-align: right;">Content</th>
-                                <td style="word-break:break-all">{{ $item->content }}</td>
+                                <td style="word-break:break-all">{!! nl2br(e($item->content)) !!}</td>
                             </tr>
                             <tr>
                                 <th scope="row" style="text-align: right;">Signature</th>

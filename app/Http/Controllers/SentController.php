@@ -51,7 +51,7 @@ class SentController extends Controller
         $senderKey=base64_decode($originalSenderKey);
         $originalReceiverKey=$request->key;
         $receiverKey=base64_decode($originalReceiverKey);
-        $content=$request->content;
+        $content=str_replace("\r","",$request->content);
         $originalSig=$request->signature;
         $signature=base64_decode($originalSig);
         if (strlen($receiverKey)!=\Sodium\CRYPTO_SIGN_PUBLICKEYBYTES||strlen($originalReceiverKey)!=44) {
