@@ -21,6 +21,12 @@ Route::resource('/sent','SentController',['only'=>['index','create','show','dest
 
 Route::post('/sent/create','SentController@store');
 
+Route::resource('/alias','AliasController',['except'=>['show']]);
+
+Route::get('/alias/{id}',function() {
+    return view('errors.404');
+});
+
 Route::get('/login',"LoginController@loginPage");
 
 Route::post('/login',"LoginController@login");
