@@ -17,7 +17,7 @@ Login - keybeaker
                         <div class="form-group{{ isset($keyerror) ? ' has-error' : '' }}">
                             <label for="key" class="col-md-4 control-label">Public Key</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="key" type="text" class="form-control" name="key" maxlength="44" value="{{ isset($oldkey) ? $oldkey : '' }}" required{{ (!isset($sigerror)) ? ' autofocus' : '' }}>
 
                                 @if (isset($keyerror))
@@ -31,7 +31,7 @@ Login - keybeaker
                         <div class="form-group">
                             <label class="col-md-4 control-label">Sign this message </label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <label class="control-label" style="word-break:break-all">{{ $nonce }}</label>
                             </div>
                         </div>
@@ -39,7 +39,7 @@ Login - keybeaker
                         <div class="form-group{{ isset($sigerror) ? ' has-error' : '' }}">
                             <label for="signature" class="col-md-4 control-label">Signature</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-7">
                                 <input id="signature" type="text" class="form-control" name="signature" maxlength="88" autocomplete="off" required {{ (isset($sigerror)) ? ' autofocus' : '' }}>
 
                                 @if (isset($sigerror))
