@@ -6,14 +6,23 @@ use Illuminate\Http\Request;
 
 class AliasController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(\App\Http\Middleware\LoginMiddleware::class);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $items=\App\Alias::where('subject_key',$request->session()->get('key'))
+                         ->orderBy('id','desc')
+                         ->paginate(20,['id','object_key','alias']);
+        return view('alias.index',['items'=>$items]);
     }
 
     /**
@@ -23,7 +32,7 @@ class AliasController extends Controller
      */
     public function create()
     {
-        //
+        return view('alias.create');
     }
 
     /**
@@ -45,7 +54,7 @@ class AliasController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('alias.edit');
     }
 
     /**
