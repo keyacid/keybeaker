@@ -43,30 +43,24 @@ class AliasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('alias.edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $originalSubjectKey=$request->session()->get('key');
+        $originalObjectKey=$request->key;
+        $objectKey=base64_decode($originalObjectKey);
+        $alias=$request->alias;
+        if (strlen($objectKey)!=\Sodium\CRYPTO_SIGN_PUBLICKEYBYTES||strlen($originalObjectKey)!=44) {
+            return view('alias.create',['keyerror'=>'You entered an invalid public key!','oldalias'=>$alias]);
+        }
+        if (\App\Alias::where('subject_key',$originalSubjectKey)
+                      ->where('object_key',$originalObjectKey)
+                      ->get()->count()>0) {
+            return view('alias.create',['keyerror'=>'Public key already exists!','oldalias'=>$alias]);
+        }
+        $new=new \App\Alias;
+        $new->subject_key=$originalSubjectKey;
+        $new->object_key=$originalObjectKey;
+        $new->alias=$alias;
+        $new->save();
+        return redirect('/alias');
     }
 
     /**
@@ -75,8 +69,14 @@ class AliasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        $item=\App\Alias::find($id);
+        if ($item==null||$item->subject_key!=$request->session()->get('key')) {
+            return response(view('errors.404'),404);
+        } else {
+            $item->delete();
+            return redirect('/alias');
+        }
     }
 }

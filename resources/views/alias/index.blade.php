@@ -23,9 +23,39 @@ Manage Aliases - keybeaker
                         </tbody>
                     </table>
                 </div>
-                <div class="panel-body">
-                    {{ dump($items) }}
-                </div>
+                @if (count($items)==0)
+                    <div class="panel-body">
+                        You don't have any aliases!
+                    </div>
+                @else
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            @foreach ($items as $item)
+                                <li class="list-group-item">
+                                    <table width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="text-align: left;">{{ $item->alias }} -> {{ $item->object_key }}</td>
+                                                <td style="text-align: right;">
+                                                    <form method="POST" style="margin: 0px;" action="{{ url('/alias/'.$item->id) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        {{ $items->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>
