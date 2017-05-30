@@ -22,7 +22,7 @@ class InboxController extends Controller
                            ->where('receiver_status','!=','deleted')
                            ->orderBy('id','desc')
                            ->paginate(20,['id','sender_key','receiver_status','created_at']);
-        return view('inbox.index',['items'=>$items]);
+        return view('inbox.index',['items'=>$items,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
     }
 
     /**
@@ -39,7 +39,7 @@ class InboxController extends Controller
         } else {
             $item->receiver_status='read';
             $item->save();
-            return view('inbox.show',['item'=>$item]);
+            return view('inbox.show',['item'=>$item,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
     }
 

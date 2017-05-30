@@ -20,7 +20,7 @@ class AliasController extends Controller
     public function index(Request $request)
     {
         $items=\App\Alias::where('subject_key',$request->session()->get('key'))
-                         ->orderBy('id','desc')
+                         ->orderBy('id','asc')
                          ->paginate(20,['id','object_key','alias']);
         return view('alias.index',['items'=>$items]);
     }
@@ -78,5 +78,18 @@ class AliasController extends Controller
             $item->delete();
             return redirect('/alias');
         }
+    }
+
+    public static function getAliases(Request $request) {
+        $aliases=\App\Alias::where('subject_key',$request->session()->get('key'))
+                           ->orderBy('id','asc')
+                           ->get(['object_key','alias']);
+        foreach ($aliases as $alias) {
+            $aliasList[$alias->object_key]=$alias->alias;
+        }
+        if (!isset($aliasList)) {
+            return [];
+        }
+        return $aliasList;
     }
 }

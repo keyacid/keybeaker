@@ -22,7 +22,7 @@ class SentController extends Controller
                            ->where('sender_status','!=','deleted')
                            ->orderBy('id','desc')
                            ->paginate(20,['id','receiver_key','receiver_status','created_at']);
-        return view('sent.index',['items'=>$items]);
+        return view('sent.index',['items'=>$items,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
     }
 
     /**
@@ -33,9 +33,9 @@ class SentController extends Controller
     public function create(Request $request)
     {
         if (isset($request->receiver)) {
-            return view('sent.create',['key'=>$request->session()->get('key'),'oldkey'=>$request->receiver]);
+            return view('sent.create',['key'=>$request->session()->get('key'),'oldkey'=>$request->receiver,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         } else {
-            return view('sent.create',['key'=>$request->session()->get('key')]);
+            return view('sent.create',['key'=>$request->session()->get('key'),'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
     }
 
@@ -55,10 +55,10 @@ class SentController extends Controller
         $originalSig=$request->signature;
         $signature=base64_decode($originalSig);
         if (strlen($receiverKey)!=\Sodium\CRYPTO_SIGN_PUBLICKEYBYTES||strlen($originalReceiverKey)!=44) {
-            return view('sent.create',['key'=>$request->session()->get('key'),'keyerror'=>'You entered an invalid public key!','oldcontent'=>$content,'oldsig'=>$originalSig]);
+            return view('sent.create',['key'=>$request->session()->get('key'),'keyerror'=>'You entered an invalid public key!','oldcontent'=>$content,'oldsig'=>$originalSig,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
         if (strlen($signature)!=\Sodium\CRYPTO_SIGN_BYTES||strlen($originalSig)!=88) {
-            return view('sent.create',['key'=>$request->session()->get('key'),'sigerror'=>'You entered an invalid signature!','oldcontent'=>$content,'oldkey'=>$originalReceiverKey]);
+            return view('sent.create',['key'=>$request->session()->get('key'),'sigerror'=>'You entered an invalid signature!','oldcontent'=>$content,'oldkey'=>$originalReceiverKey,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
         if (\Sodium\crypto_sign_verify_detached($signature,$content,$senderKey)) {
             $msg=new \App\Message;
@@ -69,7 +69,7 @@ class SentController extends Controller
             $msg->save();
             return redirect('/sent/'.$msg->id);
         } else {
-            return view('sent.create',['key'=>$request->session()->get('key'),'sigerror'=>'You entered an invalid signature!','oldcontent'=>$content,'oldkey'=>$originalReceiverKey]);
+            return view('sent.create',['key'=>$request->session()->get('key'),'sigerror'=>'You entered an invalid signature!','oldcontent'=>$content,'oldkey'=>$originalReceiverKey,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
     }
 
@@ -85,7 +85,7 @@ class SentController extends Controller
         if ($item==null||$item->sender_key!=$request->session()->get('key')||$item->sender_status=='deleted') {
             return response(view('errors.404'),404);
         } else {
-            return view('sent.show',['item'=>$item]);
+            return view('sent.show',['item'=>$item,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
         }
     }
 

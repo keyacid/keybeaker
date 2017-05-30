@@ -37,11 +37,11 @@ Sent - keybeaker
                         <tbody>
                             <tr>
                                 <th scope="row" style="text-align: right;">From</th>
-                                <td style="word-break:break-all">{{ $item->sender_key }}</td>
+                                <td style="word-break:break-all">{{ isset($aliases[$item->sender_key])?$aliases[$item->sender_key].' ('.$item->sender_key.')':$item->sender_key }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" style="text-align: right;">To</th>
-                                <td style="word-break:break-all">{{ $item->receiver_key }}</td>
+                                <td style="word-break:break-all">{{ isset($aliases[$item->receiver_key])?$aliases[$item->receiver_key].' ('.$item->receiver_key.')':$item->receiver_key }}</td>
                             </tr>
                             <tr>
                                 <th scope="row" style="text-align: right;">Sent at</th>
