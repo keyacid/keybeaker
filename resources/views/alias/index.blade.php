@@ -35,7 +35,7 @@ Manage Aliases - keybeaker
                                     <table width="100%">
                                         <tbody>
                                             <tr>
-                                                <td style="text-align: left;">{{ $item->alias }} -> {{ $item->object_key }}</td>
+                                                <td style="text-align: left;word-break:break-all">{{ $item->alias }} -> {{ $item->object_key }}</td>
                                                 <td style="text-align: right;">
                                                     <form method="POST" style="margin: 0px;" action="{{ url('/alias/'.$item->id) }}">
                                                         {{ csrf_field() }}
