@@ -72,6 +72,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="{{ url('/alias') }}">
+                                        Manage Aliases
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="{{ url('/logout') }}">
                                         Logout
                                     </a>

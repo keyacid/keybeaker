@@ -4,6 +4,20 @@
 Send a new message - keybeaker
 @endsection
 
+@section('head')
+<script>
+    function aliasChange() {
+        document.getElementById("key").value=document.getElementById("receiver").value;
+    }
+
+    window.onload=function() {
+        document.getElementById("key").addEventListener("keydown",function(event) {
+            document.getElementById("receiver").options[0].selected=true;
+        });
+    }
+</script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -19,6 +33,19 @@ Send a new message - keybeaker
 
                             <div class="col-md-7">
                                 <label class="control-label" style="word-break:break-all">{{ $key }}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="receiver" class="col-md-4 control-label">Receiver</label>
+
+                            <div class="col-md-7">
+                                <select id="receiver" name="receiver" class="form-control" onchange="aliasChange()">
+                                    <option value="">ENTER PUBLIC KEY</option>
+                                    @foreach ($aliases as $key=>$alias)
+                                        <option value="{{ $key }}">{{ $alias }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
