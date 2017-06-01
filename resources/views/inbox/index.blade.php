@@ -1,18 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-@php
-$count=0;
-foreach ($items as $item) {
-    if ($item->receiver_status=='received') {
-        ++$count;
-    }
-}
-if ($count>0) {
-    echo '('.$count.') ';
-}
-@endphp
-Inbox - keybeaker
+{{ $newcount>0?'('.$newcount.') ':'' }}Inbox - keybeaker
 @endsection
 
 @section('head')
@@ -20,7 +9,7 @@ Inbox - keybeaker
 <script>
     Notification.requestPermission(function(status) {
         if (status=='granted') {
-            var count={{ $count }};
+            var count={{ $newcount }};
             if (count>0) {
                 var n=new Notification('keybeaker',{'body':'You have '+count+' new message(s) in keybeaker!'});
                 n.onshow=function() {

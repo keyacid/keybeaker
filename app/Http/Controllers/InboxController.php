@@ -22,7 +22,10 @@ class InboxController extends Controller
                            ->where('receiver_status','!=','deleted')
                            ->orderBy('id','desc')
                            ->paginate(20,['id','sender_key','receiver_status','created_at']);
-        return view('inbox.index',['items'=>$items,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
+        $newcount=\App\Message::where('receiver_key',$request->session()->get('key'))
+                              ->where('receiver_status','received')
+                              ->count();
+        return view('inbox.index',['items'=>$items,'newcount'=>$newcount,'aliases'=>\App\Http\Controllers\AliasController::getAliases($request)]);
     }
 
     /**
