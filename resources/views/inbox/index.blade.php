@@ -12,7 +12,7 @@
             var count={{ $newcount }};
             if (count>0) {
                 var n=new Notification('keybeaker',{
-                    'body':'You have '+count+' new message(s) in keybeaker!'
+                    'body':'You have '+count+' new message(s) in keybeaker!',
                     'icon':'https://raw.githubusercontent.com/keyacid/keyacid/stable/keyacid/icons/origin.png'
                 });
                 n.onshow=function() {
