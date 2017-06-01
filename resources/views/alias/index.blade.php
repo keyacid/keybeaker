@@ -52,9 +52,11 @@ Manage Aliases - keybeaker
                             @endforeach
                         </ul>
                     </div>
-                    <div class="panel-body">
-                        {{ $items->links() }}
-                    </div>
+                    @if ($items->total()>20)
+                        <div class="panel-body">
+                            {{ $items->links() }}
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>

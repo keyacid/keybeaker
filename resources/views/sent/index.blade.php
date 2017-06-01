@@ -47,9 +47,11 @@ Sent - keybeaker
                             @endforeach
                         </div>
                     </div>
-                    <div class="panel-body">
-                        {{ $items->links() }}
-                    </div>
+                    @if ($items->total()>20)
+                        <div class="panel-body">
+                            {{ $items->links() }}
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
