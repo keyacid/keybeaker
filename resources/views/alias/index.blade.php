@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Manage Aliases - keybeaker
+Manage Aliases - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('content')

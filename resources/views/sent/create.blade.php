@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Send a new message - keybeaker
+Send a new message - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('head')

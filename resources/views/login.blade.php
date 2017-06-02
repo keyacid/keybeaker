@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Login - keybeaker
+Login - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Inbox - keybeaker
+Inbox - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('content')

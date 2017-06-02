@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Create a new alias - keybeaker
+Create a new alias - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Create a new alias - keybeaker
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <button type="button" class="btn btn-default" onclick="javascript: location.href='{{ url('/alias') }}'">
-                        < Alias
+                        &lt; Alias
                     </button>
                     Create a new alias
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $newcount>0?'('.$newcount.') ':'' }}Inbox - keybeaker
+{{ $newcount>0?'('.$newcount.') ':'' }}Inbox - {{ env('APP_NAME', 'Keybeaker') }}
 @endsection
 
 @section('head')
@@ -11,8 +11,8 @@
         if (status=='granted') {
             var count={{ $newcount }};
             if (count>0) {
-                var n=new Notification('keybeaker',{
-                    'body':'You have '+count+' new message(s) in keybeaker!',
+                var n=new Notification('{{ env('APP_NAME', 'Keybeaker') }}',{
+                    'body':'You have '+count+' new message(s) in {{ env('APP_NAME', 'Keybeaker') }}!',
                     'icon':'https://raw.githubusercontent.com/keyacid/keyacid/stable/keyacid/icons/origin.png'
                 });
                 n.onshow=function() {
