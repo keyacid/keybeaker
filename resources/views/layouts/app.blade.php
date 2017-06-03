@@ -19,6 +19,18 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+    <style>
+        .bottom-right {
+            position: relative;
+            text-align: right;
+        }
+
+        .copyright {
+            font-size: 15px;
+        }
+    </style>
+
     @yield('head')
 </head>
 <body>
@@ -42,10 +54,6 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -90,6 +98,12 @@
 
         @yield('content')
     </div>
+
+    <footer class="footer">
+        <div class="container bottom-right copyright">
+            Copyright &copy; {{ date('Y') }} yvbbrjdr
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

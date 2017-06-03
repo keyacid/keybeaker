@@ -41,12 +41,22 @@
                 top: 18px;
             }
 
+            .bottom-right {
+                position: absolute;
+                right: 10px;
+                bottom: 18px;
+            }
+
             .content {
                 text-align: center;
             }
 
             .title {
                 font-size: 84px;
+            }
+
+            .copyright {
+                font-size: 15px;
             }
 
             .links > a {
@@ -79,6 +89,10 @@
                     <a href="https://github.com/keyacid/">GitHub</a>
                     <a href="https://github.com/keyacid/keybeaker/blob/master/LICENSE">License</a>
                 </div>
+            </div>
+
+            <div class="bottom-right copyright">
+                Copyright &copy; {{ date('Y') }} yvbbrjdr
             </div>
         </div>
     </body>
