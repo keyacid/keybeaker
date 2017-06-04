@@ -7,9 +7,9 @@
 @section('head')
 <meta http-equiv="refresh" content="60">
 <script>
+    var count={{ $newcount }};
     Notification.requestPermission(function(status) {
         if (status=='granted') {
-            var count={{ $newcount }};
             if (count>0) {
                 var n=new Notification('{{ env('APP_NAME', 'Keybeaker') }}',{
                     'body':'You have '+count+' new message(s) in {{ env('APP_NAME', 'Keybeaker') }}!',
@@ -26,6 +26,22 @@
             }
         }
     });
+    if (count>0) {
+        step=0;
+        title=document.title;
+        setInterval(function() {
+            ++step;
+            if (step==3) {
+                step=1;
+            }         
+            if (step==1) {
+                document.title=title;
+            }
+            if (step==2) {
+                document.title='[New Message]';
+            }
+        },500);
+    }
 </script>
 @endsection
 
